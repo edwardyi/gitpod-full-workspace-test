@@ -1,0 +1,21 @@
+image:
+  file: .gitpod.Dockerfile
+
+# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/43_config_ports/
+ports:
+- port: 8002
+- port: 9001
+
+vscode:
+  extensions:
+    - felixfbecker.php-debug@1.13.0:WX8Y3EpQk3zgahy41yJtNQ==
+
+# List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/44_config_start_tasks/
+tasks:
+  - init: git config --global alias.co checkout && git config --global alias.br branch && git config --global alias.ci commit &&  git config --global alias.st status
+  - command: service nginx start &
+  - command: cd /workspace/magento2gitpod && chmod a+rwx mysql-bashrc-launch.sh && ./mysql-bashrc-launch.sh
+  - command: /usr/sbin/php-fpm7.2 --fpm-config php-fpm.conf &
+  - command: rm -f /etc/php/7.2/cli/conf.d/20-tideways.ini && rm -f /etc/php/7.2/fpm/conf.d/20-tideways.ini
+  - command: cd /workspace/magento2gitpod && wget -c https://magento.mirror.hypernode.com/releases/magento-2.3.5.tar.gz
+  - command: chmod a+rwx menu.sh && ./menu.sh
