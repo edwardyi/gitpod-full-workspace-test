@@ -76,7 +76,7 @@ RUN set -ex; \
 RUN chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring
 
 # Install our own MySQL config
-COPY mysql.cnf /etc/mysql/conf.d/mysqld.cnf
+COPY mysql_test.cnf.cnf /etc/mysql/conf.d/mysqld.cnf
 COPY .my.cnf /home/gitpod
 RUN chown gitpod:gitpod /home/gitpod/.my.cnf
 
