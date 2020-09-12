@@ -14,5 +14,7 @@ vscode:
 tasks:
   - init: git config --global alias.co checkout && git config --global alias.br branch && git config --global alias.ci commit &&  git config --global alias.st status
   - command: service nginx start &
-  - command: cd /workspace/magento2gitpod && chmod a+rwx mysql-bashrc-launch.sh && ./mysql-bashrc-launch.sh
+  - command: cd /workspace/gitpod-full-workspace-test && git clone https://github.com/yiisoft/yii2-app-basic.git app
+  - command: cd /workspace/gitpod-full-workspace-test/app  && composer install
+  - command: chmod a+rwx mysql-bashrc-launch.sh && ./mysql-bashrc-launch.sh
   - command: /usr/sbin/php-fpm7.2 --fpm-config php-fpm.conf &
