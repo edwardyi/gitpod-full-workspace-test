@@ -128,7 +128,7 @@ COPY ./docker/blackfire-agent.ini /etc/blackfire/agent
 COPY ./docker/blackfire-php.ini /etc/php/7.2/fpm/conf.d/92-blackfire-config.ini
 COPY ./docker/blackfire-php.ini /etc/php/7.2/cli/conf.d/92-blackfire-config.ini
 
-COPY blackfire-run.sh /blackfire-run.sh
+COPY ./docker/blackfire-run.sh /blackfire-run.sh
 
 ENTRYPOINT ["/bin/bash", "/blackfire-run.sh"]
 
