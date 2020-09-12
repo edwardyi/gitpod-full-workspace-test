@@ -14,6 +14,6 @@ vscode:
 tasks:
   - init: git config --global alias.co checkout && git config --global alias.br branch && git config --global alias.ci commit &&  git config --global alias.st status
   - command: service nginx start &
-  - command: chmod a+rwx mysql-bashrc-launch.sh && ./mysql-bashrc-launch.sh
-  - command: /usr/sbin/php-fpm7.2 --fpm-config php-fpm.conf
+  - command: chmod a+rwx ./docker/mysql-bashrc-launch.sh && ./docker/mysql-bashrc-launch.sh
+  - command: /usr/sbin/php-fpm7.2 --fpm-config ./docker/php-fpm.conf
   - command: cd /workspace/gitpod-full-workspace-test && composer create-project --prefer-dist yiisoft/yii2-app-basic app
