@@ -76,28 +76,28 @@ RUN set -ex; \
 RUN chown -R gitpod:gitpod /etc/mysql /var/run/mysqld /var/log/mysql /var/lib/mysql /var/lib/mysql-files /var/lib/mysql-keyring
 
 # Install our own MySQL config
-COPY mysql_test.cnf /etc/mysql/conf.d/mysqld.cnf
-COPY .my.cnf /home/gitpod
+COPY ./docker/mysql.cnf /etc/mysql/conf.d/mysqld.cnf
+COPY ./docker/my.cnf /home/gitpod
 RUN chown gitpod:gitpod /home/gitpod/.my.cnf
 
 USER gitpod
 
 # Install default-login for MySQL clients
-COPY client.cnf /etc/mysql/conf.d/client.cnf
+COPY ./docker/client.cnf /etc/mysql/conf.d/client.cnf
 
-COPY mysql-bashrc-launch.sh /etc/mysql/mysql-bashrc-launch.sh
+COPY ./docker/mysql-bashrc-launch.sh /etc/mysql/mysql-bashrc-launch.sh
 
 USER root
 
 #Copy nginx default and php-fpm.conf file
 #COPY default /etc/nginx/sites-available/default
-COPY php-fpm.conf /etc/php/7.2/fpm/php-fpm.conf
+COPY ./docker/php-fpm.conf /etc/php/7.2/fpm/php-fpm.conf
 RUN chown -R gitpod:gitpod /etc/php
 
 USER gitpod
 
 RUN echo "/etc/mysql/mysql-bashrc-launch.sh" >> ~/.bashrc
-COPY nginx.conf /etc/nginx
+COPY ./docker/nginx.conf /etc/nginx
 
 #Selenium required for MTF
 RUN wget -c https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
@@ -129,9 +129,9 @@ RUN \
     && tar zxpf /tmp/blackfire-probe.tar.gz -C /tmp \
     && mv /tmp/blackfire-*.so $(php -r "echo ini_get('extension_dir');")/blackfire.so
 
-COPY blackfire-agent.ini /etc/blackfire/agent
-COPY blackfire-php.ini /etc/php/7.2/fpm/conf.d/92-blackfire-config.ini
-COPY blackfire-php.ini /etc/php/7.2/cli/conf.d/92-blackfire-config.ini
+COPY ./docker/blackfire-agent.ini /etc/blackfire/agent
+COPY ./docker/blackfire-php.ini /etc/php/7.2/fpm/conf.d/92-blackfire-config.ini
+COPY ./docker/blackfire-php.ini /etc/php/7.2/cli/conf.d/92-blackfire-config.ini
 
 COPY blackfire-run.sh /blackfire-run.sh
 
