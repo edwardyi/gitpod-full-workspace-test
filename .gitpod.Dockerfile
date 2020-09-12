@@ -97,7 +97,7 @@ RUN chown -R gitpod:gitpod /etc/php
 USER gitpod
 
 RUN echo "/etc/mysql/mysql-bashrc-launch.sh" >> ~/.bashrc
-COPY nginx.conf /etc/nginx
+COPY nginx_test.conf /etc/nginx
 
 #Selenium required for MTF
 RUN wget -c https://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.59.jar
