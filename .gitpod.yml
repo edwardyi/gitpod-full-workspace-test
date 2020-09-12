@@ -17,4 +17,3 @@ tasks:
   - command: chmod a+rwx mysql-bashrc-launch.sh && ./mysql-bashrc-launch.sh
   - command: /usr/sbin/php-fpm7.2 --fpm-config php-fpm.conf
   - command: cd /workspace/gitpod-full-workspace-test && composer create-project --prefer-dist yiisoft/yii2-app-basic app
-  - command: cp -r ./app/* /usr/share/nginx/html/
